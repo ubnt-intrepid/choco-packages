@@ -8,3 +8,7 @@ $checksum64     = 'e0de0154b3dbc47cb5c5609962692dd206259affb38e27b2f9dbf571e5a84
 $checksumType64 = 'sha256'
 
 Install-ChocolateyZipPackage $packageName $url $toolsDir $url64 -checksum $checksum  -checksumType $checksumType -checksum64 $checksum64 -checksumType64 $checksumType64
+
+$vimpath = gci -directory $toolsDir | select -first 1 
+gci $toolsDir\$vimpath | foreach { mv "$toolsDir\$vimpath\$_" $toolsDir }
+rm -force $toolsDir\$vimpath
